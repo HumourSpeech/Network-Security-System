@@ -43,6 +43,54 @@ The **Network Security System** is a comprehensive machine learning solution des
 
 ---
 
+## 🚦 Project Progress (as of August 2025)
+
+### ✅ Implemented
+
+- **Data Ingestion & Preprocessing**
+   - Reads phishing dataset (`phisingData.csv`) using pandas.
+   - Converts CSV data to JSON for further processing.
+
+- **MongoDB Integration**
+   - Loads MongoDB connection string from `.env` using `python-dotenv`.
+   - Uses `pymongo` and `certifi` for secure, cloud-compatible database connections.
+   - Inserts processed data into MongoDB collections.
+
+- **Robust Exception Handling**
+   - Custom exception class (`NetworkSecurityException`) for clear error reporting.
+   - Centralized logging using a custom logger.
+
+- **Project Structure**
+   - Modular Python package layout (`networksecurity/`).
+   - Separate folders for cloud, components, constants, entities, exceptions, logging, pipeline, and utilities.
+   - All dependencies managed in `requirements.txt`.
+
+- **Environment & Dependency Management**
+   - Virtual environment setup instructions.
+   - All required packages listed and upgradable.
+
+### 🛠️ How to Use (Current State)
+
+1. **Set up your environment:**
+    - Create a `.env` file with your `MONGO_DB_URL`.
+    - Install dependencies:  
+       `pip install -r requirements.txt`
+
+2. **Run the data ingestion script:**
+    - `python push_data.py`
+    - This will read the CSV, convert it to JSON, and insert it into your MongoDB database.
+
+3. **Logging & Error Handling:**
+    - All errors are logged and reported with file and line number for easy debugging.
+
+### 📦 Next Steps
+
+- Implement machine learning models for phishing detection.
+- Add real-time monitoring and threat analysis.
+- Expand data pipeline and cloud deployment options.
+
+---
+
 ## ✨ Features
 
 ### 🛡️ Security Features
