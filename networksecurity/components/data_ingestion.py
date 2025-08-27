@@ -4,6 +4,7 @@ from networksecurity.logging.logger import logging
 ## configuration of the Data Ingestion Config
 
 from networksecurity.entity.config_entity import DataIngestionConfig
+from networksecurity.entity.artifact_entity import DataIngestionArtifact
 
 import os, sys, numpy as np, pandas as pd
 import pymongo
@@ -70,10 +71,10 @@ class DataIngestion:
             logging.info("Exporting train and test file paths.")
 
             train_set.to_csv(
-                self.data_ingestion_config.training_file_path, index=False, header = True
+                self.data_ingestion_config.train_file_path, index=False, header = True
             )
             test_set.to_csv(
-                self.data_ingestion_config.testing_file_path, index=False, header = True
+                self.data_ingestion_config.test_file_path, index=False, header = True
             )
             # return train_set, test_set
         except Exception as e:
@@ -85,5 +86,11 @@ class DataIngestion:
             dataframe = self.export_data_into_feature_store(dataframe)
             self.split_data_as_train_test(dataframe)
 
+            dataingestionartifact = DataIngestionArtifact(
+                training_file_path = self.data_ingestion_config.train_file_path,
+                testing_file_path = self.data_ingestion_config.test_file_path,
+            )
+
+            return dataingestionartifact
         except Exception as e:
             raise NetworkSecurityException(e, sys)
