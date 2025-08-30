@@ -13,39 +13,39 @@
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
-- [🎯 Overview](#-overview)
-- [✨ Features](#-features)
-- [🏗️ Project Structure](#️-project-structure)
-- [🚀 Installation](#-installation)
-- [💻 Usage](#-usage)
-- [📊 Data](#-data)
-- [🔧 Configuration](#-configuration)
-- [🤝 Contributing](#-contributing)
-- [👨‍💻 Author](#-author)
-- [📄 License](#-license)
+- [Overview](#-overview)
+- [Features](#-features)
+- [Project Structure](#️-project-structure)
+- [Installation](#-installation)
+- [Usage](#-usage)
+- [Data](#-data)
+- [Configuration](#-configuration)
+- [Contributing](#-contributing)
+- [Author](#-author)
+- [License](#-license)
 
 ---
 
-## 🎯 Overview
+## Overview
 
 The **Network Security System** is a comprehensive machine learning solution designed to detect and prevent phishing attacks and other network security threats. This system leverages advanced data analysis techniques and machine learning algorithms to identify suspicious network activities and protect against cyber threats.
 
-### 🎪 Key Highlights
+### Key Highlights
 
-- 🤖 **AI-Powered Detection**: Advanced machine learning algorithms for threat detection
-- 📈 **Real-time Analysis**: Continuous monitoring and analysis of network traffic
-- 🔍 **Phishing Detection**: Specialized detection of phishing attempts
-- 📊 **Data-Driven**: Evidence-based security decisions using comprehensive datasets
-- 🔧 **Modular Architecture**: Well-structured, maintainable codebase
-- 📝 **Comprehensive Logging**: Detailed logging for audit and debugging
+- **AI-Powered Detection**: Advanced machine learning algorithms for threat detection
+- **Real-time Analysis**: Continuous monitoring and analysis of network traffic
+- **Phishing Detection**: Specialized detection of phishing attempts
+- **Data-Driven**: Evidence-based security decisions using comprehensive datasets
+- **Modular Architecture**: Well-structured, maintainable codebase
+- **Comprehensive Logging**: Detailed logging for audit and debugging
 
 ---
 
-## 🚦 Project Progress (as of August 2025)
+## Project Progress (as of August 2025)
 
-### ✅ Implemented
+### Implemented
 
 - **Data Ingestion & Preprocessing**
    - Reads phishing dataset (`phisingData.csv`) using pandas.
@@ -69,7 +69,59 @@ The **Network Security System** is a comprehensive machine learning solution des
    - Virtual environment setup instructions.
    - All required packages listed and upgradable.
 
-### 🛠️ How to Use (Current State)
+---
+
+## Modular Pipeline Architecture
+
+- **Data Ingestion Pipeline**
+   - `DataIngestion` class: Connects to MongoDB, exports collections as DataFrames, stores features, and splits data into train/test sets.
+   - Configured via `DataIngestionConfig` and `TrainingPipelineConfig` (timestamped artifact directories).
+   - Artifacts tracked using dataclasses (`DataIngestionArtifact`).
+
+- **Data Validation Pipeline**
+   - `DataValidation` class: Validates ingested data against a YAML schema, checks for data drift using statistical tests (KS test), and organizes valid/invalid data.
+   - Configured via `DataValidationConfig` and tracked with `DataValidationArtifact`.
+
+- **YAML-Based Configuration**
+   - All schema and pipeline configs are loaded from YAML files for flexibility and reproducibility.
+   - Utility functions for reading YAML and handling serialization.
+
+- **Exception & Logging System**
+   - Custom `NetworkSecurityException` for detailed error reporting (file, line, message).
+   - Centralized logging with timestamped log files for traceability.
+
+- **Testing & Validation**
+   - Includes scripts for MongoDB connection testing and pipeline validation.
+
+---
+
+## How to Use (Current State)
+
+1. **Set up your environment:**
+    - Create a `.env` file with your `MONGO_DB_URL`.
+    - Install dependencies:  
+       `pip install -r requirements.txt`
+
+2. **Run the data ingestion and validation pipeline:**
+    - `python main.py`
+    - This will connect to MongoDB, export data, validate it, and store artifacts in a timestamped directory.
+
+3. **Logging & Error Handling:**
+    - All errors are logged and reported with file and line number for easy debugging.
+
+4. **Test MongoDB Connection:**
+    - Use `test_mongodb.py` to verify your database connection.
+
+---
+
+## Next Steps
+
+- Implement model training and evaluation modules.
+- Add real-time monitoring and threat analysis.
+- Expand data pipeline and cloud deployment options.
+- Integrate more advanced validation and feature engineering steps.
+
+### How to Use (Current State)
 
 1. **Set up your environment:**
     - Create a `.env` file with your `MONGO_DB_URL`.
@@ -83,7 +135,7 @@ The **Network Security System** is a comprehensive machine learning solution des
 3. **Logging & Error Handling:**
     - All errors are logged and reported with file and line number for easy debugging.
 
-### 📦 Next Steps
+### Next Steps
 
 - Implement machine learning models for phishing detection.
 - Add real-time monitoring and threat analysis.
@@ -91,15 +143,15 @@ The **Network Security System** is a comprehensive machine learning solution des
 
 ---
 
-## ✨ Features
+## Features
 
-### 🛡️ Security Features
+### Security Features
 - **Phishing Detection**: Advanced algorithms to identify phishing attempts
 - **Threat Analysis**: Comprehensive analysis of network security threats
 - **Real-time Monitoring**: Continuous surveillance of network activities
 - **Anomaly Detection**: Identification of unusual network patterns
 
-### 🔧 Technical Features
+### Technical Features
 - **Modular Design**: Clean, maintainable code architecture
 - **Exception Handling**: Robust error handling and reporting
 - **Logging System**: Comprehensive logging for monitoring and debugging
@@ -109,7 +161,7 @@ The **Network Security System** is a comprehensive machine learning solution des
 
 ---
 
-## 🏗️ Project Structure
+## Project Structure
 
 ```
 Network Security System/
@@ -178,7 +230,7 @@ Network Security System/
 
 ---
 
-## 💻 Usage
+## Usage
 
 ### Basic Usage
 
@@ -209,7 +261,7 @@ THREAT_THRESHOLD=0.8
 
 ---
 
-## 📊 Data
+## Data
 
 The system uses the `phisingData.csv` dataset located in the `Network_Data/` directory. This dataset contains:
 
@@ -227,7 +279,7 @@ The system uses the `phisingData.csv` dataset located in the `Network_Data/` dir
 
 ---
 
-## 🔧 Configuration
+## Configuration
 
 ### Environment Variables
 
@@ -258,7 +310,7 @@ docker run -p 8080:8080 network-security-system
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions! Please follow these steps:
 
@@ -280,18 +332,18 @@ We welcome contributions! Please follow these steps:
 ## 👨‍💻 Author
 
 **Nitin Mishra**
-- 📧 Email: mishranitin6076@gmail.com
-- 🐙 GitHub: [@HumourSpeech](https://github.com/HumourSpeech)
+- Email: mishranitin6076@gmail.com
+- GitHub: [@HumourSpeech](https://github.com/HumourSpeech)
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Thanks to all contributors who have helped build this system
 - Special recognition to the cybersecurity community for their ongoing research
@@ -301,7 +353,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 
-**⭐ Star this repository if you find it helpful!**
+**Star this repository if you find it helpful!**
 
 Made with ❤️ by [Nitin Mishra](https://github.com/HumourSpeech)
 
