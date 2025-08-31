@@ -10,10 +10,11 @@ TARGET_COLUMN = "Result"
 PIPELINE_NAME: str = "NetworkSecurity"
 ARTIFACT_DIR: str = "artifact"
 FILE_NAME: str = "phisingData.csv"
-# SCHEMA_FILE_PATH: str = ""
 
 TRAIN_FILE_NAME: str = "train.csv"
 TEST_FILE_NAME: str = "test.csv"
+
+SCHEMA_FILE_PATH = os.path.join("data_schema", "schema.yaml")
 
 """
 Data Ingestion related constant start with DATA_INGESTION VAR NAME
