@@ -4,7 +4,7 @@ columns:
   - Shortining_Service: int64
   - having_At_Symbol: int64
   - double_slash_redirecting: int64
-  - prefix_Suffix: int64
+  - Prefix_Suffix: int64
   - having_Sub_Domain: int64
   - SSLfinal_State: int64
   - Domain_registeration_length: int64
@@ -20,7 +20,7 @@ columns:
   - Redirect: int64
   - on_mouseover: int64
   - RightClick: int64
-  - popUpWindow: int64
+  - popUpWidnow: int64
   - Iframe: int64
   - age_of_domain: int64
   - DNSRecord: int64
@@ -37,7 +37,7 @@ numerical_columns:
   - Shortining_Service
   - having_At_Symbol
   - double_slash_redirecting
-  - prefix_Suffix
+  - Prefix_Suffix
   - having_Sub_Domain
   - SSLfinal_State
   - Domain_registeration_length
@@ -53,7 +53,7 @@ numerical_columns:
   - Redirect
   - on_mouseover
   - RightClick
-  - popUpWindow
+  - popUpWidnow
   - Iframe
   - age_of_domain
   - DNSRecord
