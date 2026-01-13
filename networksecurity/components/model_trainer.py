@@ -20,6 +20,9 @@ from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier,
 
 import mlflow
 
+import dagshub
+dagshub.init(repo_owner='mishranitin6076', repo_name='Network-Security-System', mlflow=True)
+
 class ModelTrainer:
     def __init__(self, model_trainer_config: ModelTrainerConfig,
                  data_transformation_artifact: DataTransformationArtifact):
@@ -92,12 +95,12 @@ class ModelTrainer:
             classification_train_metric = get_classification_score(y_true = y_train, y_pred = y_train_pred)
 
             ## Track the experiments with mlflow
-            self.track_mlflow(best_model_name, best_model, classification_train_metric)
+            self.track_mlflow(best_model, classification_train_metric)
 
             y_test_pred =  best_model.predict(x_test)
             classification_test_metric = get_classification_score(y_true=y_test, y_pred=y_test_pred)
 
-            self.track_mlflow(best_model_name, best_model, classification_test_metric)
+            self.track_mlflow(best_model, classification_test_metric)
 
             preprocessor = load_object(file_path=self.data_transformation_artifact.transformed_object_file_path)
             
