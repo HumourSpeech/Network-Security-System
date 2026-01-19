@@ -19,12 +19,14 @@ if __name__=='__main__':
         dataingestionartifact = data_ingestion.initiate_data_ingestion()
         logging.info("Data Initiation Completed")
         print(dataingestionartifact)
+        
         data_validation_config=DataValidationConfig(training_pipeline_config)
         data_validation=DataValidation(dataingestionartifact,data_validation_config)
         logging.info("Initiate the data Validation")
         data_validation_artifact=data_validation.initiate_data_validation()
         logging.info("data Validation Completed")
         print(data_validation_artifact)
+
         logging.info("Initiate the data Transformation")
         data_transformation_config = DataTransformationConfig(training_pipeline_config)
         data_transformation = DataTransformation(data_validation_artifact, data_transformation_config)

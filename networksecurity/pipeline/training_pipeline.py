@@ -53,4 +53,14 @@ class TrainingPipeline:
             return data_transformation_artifact
         except Exception as e:
             raise NetworkSecurityException(e, sys)
-            
+    
+    def start_model_trainer(self, data_transformation_artifact: DataTransformationArtifact) -> ModelTrainerArtifact:
+        try:
+            self.model_trainer_config: ModelTrainerConfig = ModelTrainerConfig(training_pipeline_config=self.training_pipeline_config)
+            model_trainer = ModelTrainer(model_trainer_config=self.model_trainer_config,
+                                         data_transformation_artifact=data_transformation_artifact)
+            logging.info(f"{'>>'*20} Starting Model Trainer {'<<'*20}")
+            model_trainer_artifact: ModelTrainerArtifact = model_trainer.initiate_model_trainer()
+            return model_trainer_artifact
+        except Exception as e:
+            raise NetworkSecurityException(e, sys)
