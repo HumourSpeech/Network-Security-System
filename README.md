@@ -103,7 +103,7 @@ The system implements a sophisticated 4-stage ML pipeline with automated artifac
 - **Performance Evaluation**: Comprehensive metrics including F1-score, Precision, and Recall
 - **Model Selection**: Automated best model selection based on R² score performance
 - **Overfitting Prevention**: Built-in validation with 5% threshold for train-test score difference
-- **MLflow Integration**: Experiment tracking and model versioning (track_mlflow method)
+- **MLflow & Dagshub Integration**: Experiment tracking, metric logging, and model versioning (track_mlflow method)
 
 ### Custom Components
 
@@ -147,8 +147,11 @@ MongoDB Atlas → Data Ingestion → Data Validation → Data Transformation →
 ```
 Network Security System/
 ├── networksecurity/                    # Core ML Package
+│   ├── pipeline/                       # Pipeline Orchestration
+│   │   └── training_pipeline.py       # Complete training pipeline class
 │   ├── components/                     # Pipeline Components
 │   │   ├── data_ingestion.py          # MongoDB data extraction and splitting
+
 │   │   ├── data_validation.py         # Schema validation and drift detection  
 │   │   ├── data_transformation.py     # KNN imputation and preprocessing
 │   │   └── model_trainer.py           # Multi-algorithm training with MLflow
@@ -239,6 +242,23 @@ Network Security System/
 ### Complete Pipeline Execution
 
 ```python
+from networksecurity.pipeline.training_pipeline import TrainingPipeline
+
+# Initialize the pipeline
+pipeline = TrainingPipeline()
+
+# Execute complete ML pipeline (Ingestion → Validation → Transformation → Training)
+try:
+    model_artifact = pipeline.run_pipeline()
+    print(f"Training completed. Best model saved at: {model_artifact.trained_model_file_path}")
+    
+except Exception as e:
+    print(f"Pipeline execution failed: {e}")
+```
+
+### Manual Component Execution
+
+```python
 from networksecurity.components.data_ingestion import DataIngestion
 from networksecurity.components.data_validation import DataValidation
 from networksecurity.components.data_transformation import DataTransformation
@@ -248,7 +268,7 @@ from networksecurity.entity.config_entity import *
 # Initialize timestamped pipeline configuration
 training_config = TrainingPipelineConfig()
 
-# Execute complete ML pipeline
+# Execute components step-by-step
 try:
     # Data Ingestion: MongoDB → Feature Store → Train/Test Split
     data_ingestion = DataIngestion(DataIngestionConfig(training_config))
